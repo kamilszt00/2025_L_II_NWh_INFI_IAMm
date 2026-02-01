@@ -13,7 +13,7 @@ test:
 	python -m pytest --verbose -s --rootdir=.
 
 docker_build:
-	docker build -t hello-world-printer .
+	docker build -t hello-world-printer -f ./Dockerfile .
 
 docker_run: docker_build
 	docker run \
