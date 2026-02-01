@@ -1,5 +1,5 @@
 deps:
-	python -m pip install -r requirements.txt 
+	python -m pip install -r requirements.txt
 	python -m pip install -r test_requirements.txt
 
 lint:
@@ -8,6 +8,15 @@ lint:
 run:
 	python main.py
 
-.PHONY: test
+.PHONY: test docker_run docker_build
 test:
 	python -m pytest --verbose -s --rootdir=.
+
+docker_build:
+	docker build -t hello-world-printer .
+
+docker_run: docker_build
+	docker run \
+		--name hello-world-printer-dev \
+		-p 5000:5000 \
+		-d hello-world-printer
